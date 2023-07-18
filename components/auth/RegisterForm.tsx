@@ -1,34 +1,18 @@
 import React from "react";
 import styles from "./LoginForm.module.scss";
-import { Form, Input, Button, notification } from "antd";
-import { loginFormDto } from "@/api/dto/auth.dto";
+import { Button, Form, Input } from "antd";
+import { registerFormDto, registerResponceDto } from "@/api/dto/auth.dto";
 import * as Api from "@/api";
 import { setCookie } from "nookies";
 
 type Props = {};
 
-const LoginForm = (props: Props) => {
-  const onSubmit = async (obj: loginFormDto) => {
+const RegisterForm: React.FC = (props: Props) => {
+  const onSubmit = async (data: registerFormDto) => {
     try {
-      const { _token } = await Api.auth.login(obj);
-
-      notification.success({
-        message: "Successful!",
-        description: "Redirecting to admin-panel...",
-        duration: 2,
-      });
-
-      setCookie(null, "_token", _token, {
-        path: "/",
-      });
+      const { _token } = await Api.auth.register(data);
     } catch (err) {
-      console.warn("LoginForm ", err);
-
-      notification.error({
-        message: "Ошибка!",
-        description: "Неверный логин или пароль",
-        duration: 2,
-      });
+      g;
     }
   };
 
@@ -41,6 +25,19 @@ const LoginForm = (props: Props) => {
         }}
         onFinish={onSubmit}
       >
+        <Form.Item
+          label="Full Name"
+          name="fullName"
+          rules={[
+            {
+              required: true,
+              message: "Please input your Full Name",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
         <Form.Item
           label="E-Mail"
           name="email"
@@ -69,7 +66,7 @@ const LoginForm = (props: Props) => {
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            Sign In
+            Sign Up
           </Button>
         </Form.Item>
       </Form>
@@ -77,4 +74,4 @@ const LoginForm = (props: Props) => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
