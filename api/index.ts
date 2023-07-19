@@ -1,1 +1,2 @@
-export * as auth from './auth.ts';
+export * as auth from "./auth";
+export * as file from "./file";
