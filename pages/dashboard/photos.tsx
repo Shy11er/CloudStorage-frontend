@@ -33,7 +33,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   }
 
   try {
-    const files = await Api.file.getAll();
+    const files = await Api.file.getAll("photos");
 
     return {
       props: {
