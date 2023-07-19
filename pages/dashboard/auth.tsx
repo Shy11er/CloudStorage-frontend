@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
 import LoginForm from "@/components/auth/LoginForm";
+import RegisterForm from "@/components/auth/RegisterForm";
 import { Tabs } from "antd";
 import "@/styles/globals.css";
 
@@ -24,7 +25,7 @@ const AuthPage: NextPage = (props: Props) => {
             {
               label: "Sign Up",
               key: "2",
-              children: <h1>asd</h1>,
+              children: <RegisterForm />,
             },
           ]}
         />

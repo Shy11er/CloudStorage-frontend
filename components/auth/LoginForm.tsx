@@ -14,13 +14,15 @@ const LoginForm = (props: Props) => {
 
       notification.success({
         message: "Successful!",
-        description: "Redirecting to admin-panel...",
+        description: "Redirecting to the admin panel...",
         duration: 2,
       });
 
       setCookie(null, "_token", _token, {
         path: "/",
       });
+
+      location.href = "/dashboard";
     } catch (err) {
       console.warn("LoginForm ", err);
 

@@ -10,3 +10,9 @@ export interface loginResponseDto {
 }
 
 export type registerResponceDto = loginResponseDto;
+
+export interface User {
+  id: number;
+  email: string;
+  fullName: string;
+}

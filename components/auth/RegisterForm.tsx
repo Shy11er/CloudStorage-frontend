@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./LoginForm.module.scss";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import { registerFormDto, registerResponceDto } from "@/api/dto/auth.dto";
 import * as Api from "@/api";
 import { setCookie } from "nookies";
@@ -11,8 +11,26 @@ const RegisterForm: React.FC = (props: Props) => {
   const onSubmit = async (data: registerFormDto) => {
     try {
       const { _token } = await Api.auth.register(data);
+
+      notification.success({
+        message: "Successful",
+        description: "Redirecting to the admin panel...",
+        duration: 2,
+      });
+
+      setCookie(null, "_token", _token, {
+        path: "/",
+      });
+
+      location.href = "/dashboard";
     } catch (err) {
-      g;
+      console.warn("RegisterForm ", err);
+
+      notification.error({
+        message: "Ошибка!",
+        description: "Неверный логин или пароль",
+        duration: 2,
+      });
     }
   };
 
