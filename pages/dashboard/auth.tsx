@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
-import LoginForm from "@/components/auth/LoginForm";
-import RegisterForm from "@/components/auth/RegisterForm";
+import LoginForm from "@/components/Auth/LoginForm";
+import RegisterForm from "@/components/Auth/RegisterForm";
 import { Tabs } from "antd";
 import "@/styles/globals.css";
 

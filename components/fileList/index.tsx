@@ -1,7 +1,7 @@
 import { FileItem } from "@/api/dto/file.dto";
 import React from "react";
 import styles from "./FileList.module.scss";
-import { FileCard } from "../fileCard";
+import { FileCard } from "../FileCard";
 import { GetServerSidePropsContext } from "next";
 import { checkAuth } from "@/utils/checkAuth";
 

@@ -8,7 +8,7 @@ import {
   FileImageOutlined,
   FileOutlined,
 } from "@ant-design/icons";
-import { UploadButton } from "@/components/uploadButton/UploadButton";
+import { UploadButton } from "@/components/UploadButton/UploadButton";
 
 export const DashboardLayout: React.FC<React.PropsWithChildren> = ({
   children,

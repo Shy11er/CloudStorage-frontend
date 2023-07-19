@@ -1,13 +1,13 @@
 import { GetServerSidePropsContext, NextPage } from "next";
 import React from "react";
 import { checkAuth } from "@/utils/checkAuth";
-import Header from "@/components/header/Header";
+import Header from "@/components/Header/Header";
 import "@/styles/globals.css";
 import { Layout } from "@/layouts/Layout";
 import { DashboardLayout } from "@/layouts/DashboardLayout";
 import { FileItem } from "@/api/dto/file.dto";
 import * as Api from "@/api";
-import FileList from "@/components/fileList";
+import FileList from "@/components/FileList";
 
 type Props = {
   items: FileItem[];
