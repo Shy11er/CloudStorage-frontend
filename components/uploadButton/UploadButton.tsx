@@ -14,8 +14,9 @@ export const UploadButton = (props: Props) => {
       const files = await Api.file.uploadFile(options);
 
       setFileList([]);
+
+      window.location.reload();
     } catch (err) {
-      //   return alert("Failed to upload files");
       notification.error({
         message: "Error",
         description: "Failed to upload file",

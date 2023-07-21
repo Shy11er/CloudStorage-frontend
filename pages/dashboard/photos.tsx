@@ -1,13 +1,12 @@
 import { GetServerSidePropsContext, NextPage } from "next";
 import React from "react";
 import { checkAuth } from "@/utils/checkAuth";
-import Header from "@/components/Header/Header";
 import "@/styles/globals.css";
 import { Layout } from "@/layouts/Layout";
 import { DashboardLayout } from "@/layouts/DashboardLayout";
 import { FileItem } from "@/api/dto/file.dto";
 import * as Api from "@/api";
-import FileList from "@/components/FileList";
+import { Files } from "@/modules/Files";
 
 type Props = {
   items: FileItem[];
@@ -16,7 +15,7 @@ type Props = {
 const DashboardPage: NextPage<Props> = ({ items }) => {
   return (
     <DashboardLayout>
-      <FileList items={items} />
+       <Files items={items} withActions />
     </DashboardLayout>
   );
 };

@@ -1,13 +1,12 @@
 import { GetServerSidePropsContext, NextPage } from "next";
 import React from "react";
 import { checkAuth } from "@/utils/checkAuth";
-import Header from "@/components/Header/Header";
 import "@/styles/globals.css";
 import { Layout } from "@/layouts/Layout";
 import { DashboardLayout } from "@/layouts/DashboardLayout";
 import { FileItem } from "@/api/dto/file.dto";
 import * as Api from "@/api";
-import FileList from "@/components/FileList";
+import { Files } from "@/modules/Files";
 
 type Props = {
   items: FileItem[];
@@ -16,7 +15,7 @@ type Props = {
 const DashboardPage: NextPage<Props> = ({ items }) => {
   return (
     <DashboardLayout>
-      <FileList items={items} />
+      <Files items={items} withActions />
     </DashboardLayout>
   );
 };
@@ -35,9 +34,20 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   try {
     const files = await Api.file.getAll();
 
+    const blobFiles = files.map((file) => {
+      const blob = new Blob(
+        [`http://localhost:8080/uploads/${file.filename}`],
+        { type: file.mimetype }
+      );
+
+      file.filename = URL.createObjectURL(blob);
+      return file;
+    });
+    console.log(blobFiles);
+
     return {
       props: {
-        items: files,
+        items: blobFiles,
       },
     };
   } catch (err) {

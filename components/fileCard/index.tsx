@@ -7,13 +7,17 @@ import { FileTextOutlined } from "@ant-design/icons";
 
 type Props = {
   filename: string;
+  mimetype?: string;
   originalName: string;
 };
 
-export const FileCard: React.FC<Props> = ({ originalName, filename }) => {
-  const ext = getExtensionFromFileName(filename);
-  const imageUrl =
-    ext && isImage(ext) ? "http://localhost:8080/uploads/" + filename : "";
+export const FileCard: React.FC<Props> = ({
+  originalName,
+  filename,
+  mimetype = "file/undefined",
+}) => {
+  const ext = getExtensionFromFileName(mimetype);
+  const imageUrl = ext && isImage(ext) ? filename : "";
   const color = getColorByExtension(ext);
   const classColor = styles[color];
 
